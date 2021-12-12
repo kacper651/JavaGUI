@@ -9,10 +9,10 @@ public class UserRepository {
     }
     private void initializeUserRepo(){
         dataBase.put("Kacper", new User("Kacper", "123"));
-        dataBase.put("Jan", new User("Jan", "123"));
-        dataBase.put("Marek", new User("Marek", "123"));
-        dataBase.put("Tomasz", new User("Tomasz", "123"));
-        dataBase.put("Borys", new User("Borys", "123"));
+        dataBase.put("Jan", new User("Jan", "12345"));
+        dataBase.put("Marek", new User("Marek", "6273582ws"));
+        dataBase.put("Tomasz", new User("Tomasz", "Shshqwe123"));
+        dataBase.put("Borys", new User("Borys", "HshshsSH"));
     }
     public User getUserByUsername(String username){
         return this.dataBase.get(username);
