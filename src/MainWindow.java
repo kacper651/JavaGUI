@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
+    public AuthenticationService authenticationService = new AuthenticationService();
     public static void main(String[] args){
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -61,7 +62,7 @@ public class MainWindow extends JFrame {
         background.add(sukces);
         sukces.setVisible(false);
 
-        JLabel failure = new JLabel();
+        JLabel failure = new JLabel("Wpisz poprawne dane!");
         failure.setBounds(300, 150, 300, 23);
         background.add(failure);
         failure.setVisible(false);
@@ -73,10 +74,10 @@ public class MainWindow extends JFrame {
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //dodać jeszcze tylko baze danych na uzytkownikow i jakies ify zeby robilo sie czerwone jak beda zle passy (np. mapa<Login, Hasło>)
-                panel.setBackground(Color.GREEN);
-                loginBtn.setToolTipText("Logowanie zakończone powodzeniem");
-                sukces.setVisible(true);
+                Boolean isLoggedIn = authenticationService.logInUser(login.getText(), haslo.getText());
+                sukces.setVisible(isLoggedIn);
+                failure.setVisible(!isLoggedIn);
+                panel.setBackground(isLoggedIn ? Color.GREEN : Color.RED);
             }
         });
 
